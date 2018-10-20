@@ -1,0 +1,9 @@
+assign "text1" to var_identifier
+create "RobertCapa" as var_identity
+create "GerdaTaro" as var_identity2
+create "GermanGoering" as var_identity3
+var_identity = var_identity2
+
+var_identity = var_identity2+var_identity3
+
+var_identity = sort var_identity2asc

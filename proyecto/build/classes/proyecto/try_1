@@ -1,0 +1,9 @@
+assign "Robocop" to var_identifier
+createe "RobertCapa" as var_identity
+create "GerdaTaro" as var_identity2
+create "GermanGoering" as var identity3
+var_identity = var_identity2
+
+var_identity = var_identity2+var_identity3
+
+var_identity = sort var_identity2asc
