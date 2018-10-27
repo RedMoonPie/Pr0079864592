@@ -1,4 +1,6 @@
 assign "text1" to var_identifier
+create "RobertCapa" as var_identity
+var_identity = sort var_identifier asc
 assign "text2" to var_identifier2
 assign "texto3" to var
 create "RobertCapa" as var_identity

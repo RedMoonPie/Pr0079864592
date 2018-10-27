@@ -12,6 +12,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Stream;
@@ -109,8 +110,51 @@ public class Metodos {
             bfr2.close();
             bfw.close();
     }
+//--------------------/----------------------------------------/--------------------//    
+    
+//--------------------/             var_id1 = sort var_id2 asc/des method                /--------------------//
+
+    public void sort(String v1,String v2,String mode) throws IOException{
+        System.out.println(v1 +" "+ v2);
+        BufferedReader bfr2 = new BufferedReader(new FileReader(comm.get(v2)));
+        BufferedWriter bfw = new BufferedWriter(new FileWriter(comm.get(v1)));
+        Stream<String> tmp = bfr2.lines();
+        if( mode.equalsIgnoreCase("asc")){
+            tmp.sorted(Comparator.naturalOrder()).forEach((x) -> {
+                try {
+                    bfw.write(x);
+                    bfw.newLine();
+                } catch (IOException ex) {
+                    Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+           
+            
+        }
+        if(mode.equalsIgnoreCase("des")){
+            tmp.sorted(Comparator.reverseOrder()).forEach((x) -> {
+                try {
+                    bfw.write(x);
+                    bfw.newLine();
+                } catch (IOException ex) {
+                    Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            });
+
+        }
+        bfr2.close();
+        bfw.close();
+    }
     
     
+    
+    
+    
+    
+    
+    
+    
+//--------------------/----------------------------------------/--------------------//
     
 //--------------------/             Syntax checking method                /--------------------//
 
@@ -132,6 +176,7 @@ public class Metodos {
                 else {
                     return 0;
                 }
+
 //-----------------------------------------------------------------//
 //>>    Checks command assign and create
 //-----------------------------------------------------------------//
