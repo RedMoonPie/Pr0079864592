@@ -12,9 +12,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import static proyecto.Proyecto.comm;
 
@@ -55,6 +59,7 @@ public class Metodos {
             tmp.createNewFile();
             comm.put(Var_identifier, tmp);
         } else {
+            comm.put(Var_identifier, tmp);
             System.out.println("El archivo Ya existe");
         }
         System.out.println(comm.keySet());
@@ -145,16 +150,42 @@ public class Metodos {
         bfr2.close();
         bfw.close();
     }
+//--------------------/----------------------------------------/--------------------//
     
-    
-    
-    
+//--------------------/             Remove doubles method                /--------------------//
+    public void rmd(String v1, String v2)throws IOException{
+        
+        BufferedReader bfr = new BufferedReader(new FileReader(comm.get(v2)));
+        BufferedWriter bw = new BufferedWriter(new FileWriter(comm.get(v1)));
+        Stream<String> tmp = bfr.lines();
+        tmp.forEach((x)->{
+            List<String> clear = Arrays.asList(x.split(" "));
+            clear = clear.stream().distinct().collect(Collectors.toList());
+           try {
+               bw.write(clear.toString().replace(",","").replace("[", "").replace("]", ""));
+                bw.newLine();
+            } catch (IOException ex) {
+               Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        });
+//        Set lt = tmp.collect(Collectors.toSet());
+        
+       
+//        Stream<String> tmp2 = tmp.distinct();
+//        tmp2.forEach((x)->{
+//            
+//            
+//        });
+        bw.close();
+        bfr.close();
+    }
     
     
     
     
     
 //--------------------/----------------------------------------/--------------------//
+   
     
 //--------------------/             Syntax checking method                /--------------------//
 
@@ -168,6 +199,7 @@ public class Metodos {
             if (tmp.length == 4 && tmp[1].equals("=")) {
                 
                 if (tmp[2].equals("rem_doubles")) {
+                    System.out.println(tmp[0]+" "+tmp[3]);
                     if(comm.containsKey(tmp[0]) && comm.containsKey(tmp[3])){
                         return 1;
                     }
