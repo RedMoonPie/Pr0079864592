@@ -1,8 +1,7 @@
 assign "text1" to var_identifier
 create "RobertCapa" as var_identity
-assign "text2" to var_identity
+var_identity = sort var_identifier des
 assign "texto3" to var
-var_identity = rem_doubles var_identifier
 create "RobertCapa" as var_identity
 create "GerdaTaro" as var_identity2
 create "Hermann_Göring" as var_identity3

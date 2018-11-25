@@ -1,0 +1,5 @@
+assign “myFile.txt” to a
+assign “otherFile.txt” to b
+b = rem_doubles a
+create “res.txt” as x
+x = b

@@ -15,6 +15,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
@@ -134,32 +136,62 @@ public class Metodos {
     public void sort(String v1, String v2, String mode) throws IOException {
         BufferedReader bfr2 = new BufferedReader(new FileReader(comm.get(v2)));
         BufferedWriter bfw = new BufferedWriter(new FileWriter(comm.get(v1)));
-        List<String> listado = new ArrayList<String>();
-        String otro;
+        List listado = new LinkedList<>();
         String linea = bfr2.readLine();
         // bucle por todas las lìneas
-        while (linea != null) {
-            StringTokenizer st = new StringTokenizer (linea);
-            // bucle por todas las palabras
-            while (st.hasMoreTokens()) {
-                otro = st.nextToken();
-                listado.add(otro);
-            }
+          while (linea != null) {
+            String[] a = linea.split(" ");
+            Collections.addAll(listado, a);       
             linea = bfr2.readLine();
+
         }
+//        while (linea != null) {
+//            StringTokenizer st = new StringTokenizer (linea);
+//            // bucle por todas las palabras
+//            while (st.hasMoreTokens()) {
+//                otro = st.nextToken();
+//                listado.add(otro);
+//            }
+//            linea = bfr2.readLine();
+//        }
         
         if (mode.equalsIgnoreCase("asc")) {
             Collections.sort(listado);
+ 
             try {
-                bfw.write(listado.toString().replace(",", "").replace("[", "").replace("]", ""));
-                bfw.newLine();
+                int ctp = 0;
+                for (Object dat : listado){
+                ctp++;
+                bfw.write(dat.toString().replace(",", "").replace("[", "").replace("]", "") + "  "); 
+                if (ctp == 20){
+                    ctp = 0;
+                    bfw.newLine();
+                }
+                }
             } catch (IOException ex) {
                 Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-        bfr2.close();
-        bfw.close();
+        if (mode.equalsIgnoreCase("des")){
+            Comparator<String> cm = Collections.reverseOrder();
+            Collections.sort(listado, cm);
+            try {
+                int ctp = 0;
+                for (Object dat : listado){
+                ctp++;
+                bfw.write(dat.toString().replace(",", "").replace("[", "").replace("]", "") + "  "); 
+                if (ctp == 20){
+                    ctp = 0;
+                    bfw.newLine();
+                }
+                }
+            } catch (IOException ex) {
+                Logger.getLogger(Metodos.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+          bfr2.close();
+            bfw.close();
     }
 
     //--------------------/           Remove doubles method         /--------------------//
@@ -266,7 +298,7 @@ public class Metodos {
             //-----------------------------------------------------------------//
             //>>    Checks command var_id1 = sort var_id2 asc/des
             //-----------------------------------------------------------------//
-            } else if (tmp.length == 5 && tmp[1].equals("=") && tmp[2].equals("sort") && tmp[4].equalsIgnoreCase("asc")) {
+            } else if (tmp.length == 5 && tmp[1].equals("=") && tmp[2].equals("sort") && tmp[4].equalsIgnoreCase("asc")||tmp[4].equalsIgnoreCase("des")) {
                 if (comm.containsKey(tmp[0]) && comm.containsKey(tmp[3])) {
                     return 6;
                 } else {

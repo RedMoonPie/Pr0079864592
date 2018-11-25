@@ -1,0 +1,7 @@
+create “fileA.txt” as fa
+assign “namesA.txt” to x
+assign “namesB.txt” to y
+x = sort x asc
+y = sort y asc
+fa = x + y
+y = rem_doubles fa
