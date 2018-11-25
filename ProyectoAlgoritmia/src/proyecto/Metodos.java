@@ -41,17 +41,16 @@ public class Metodos {
     //--------------------/             Assign method                /--------------------//
     
     public void assignx(String filename, String Var_identifier) {
-        System.out.println("src/proyecto/" + filename.substring(1, filename.length() - 1) + ".txt");
         File tmp = new File("src/proyecto/" + filename.substring(1, filename.length() - 1) + ".txt");
         if (tmp.exists()) {
             if (comm.containsKey(Var_identifier)) {
                 comm.put(Var_identifier + "x", tmp);
+                System.out.println("El identificador "+Var_identifier+" YA existe por lo tanto se ha asignado: \n"+Var_identifier+"x. \n");
             } else {
                 comm.put(Var_identifier, tmp);
             }
         }
-        System.out.println(comm.keySet());
-        System.out.println(comm.values());
+    
 
     }
 
@@ -59,9 +58,12 @@ public class Metodos {
     
     public void createx(String filename, String Var_identifier) throws IOException {
         File tmp = new File("src/proyecto/" + filename.substring(1, filename.length() - 1) + ".txt");
+//        System.out.println(comm.keySet());
+//        System.out.println(comm.values());
         if (!tmp.exists()) {
             tmp.createNewFile();
             if (comm.containsKey(Var_identifier)) {
+                System.out.println("El identificador "+Var_identifier+" YA existe por lo tanto se ha asignado: \n"+Var_identifier+"x. \n");
                 comm.put(Var_identifier + "x", tmp);
             } else {
                 comm.put(Var_identifier, tmp);
@@ -70,15 +72,15 @@ public class Metodos {
         } else {
             if (!comm.containsValue(tmp)) {
                 if (comm.containsKey(Var_identifier)) {
+                    System.out.println("El identificador"+Var_identifier+" YA existe por lo tanto se ha asignado: \n"+Var_identifier+"x. \n");
                     comm.put(Var_identifier + "x", tmp);
                 } else {
                     comm.put(Var_identifier, tmp);
                 }
             }
-            System.out.println("\nEl archivo YA existe");
+            System.out.println("El archivo: "+ filename +", YA existe \n");
         }
-        System.out.println(comm.keySet());
-        System.out.println(comm.values());
+       
     }
 
     //--------------------/             var_id1 = var_id2 method                /--------------------//
@@ -130,7 +132,6 @@ public class Metodos {
     //--------------------/        var_id1 = sort var_id2 asc/des method         /--------------------//
     
     public void sort(String v1, String v2, String mode) throws IOException {
-        System.out.println(v1 + " " + v2);
         BufferedReader bfr2 = new BufferedReader(new FileReader(comm.get(v2)));
         BufferedWriter bfw = new BufferedWriter(new FileWriter(comm.get(v1)));
         List<String> listado = new ArrayList<String>();
@@ -196,7 +197,6 @@ public class Metodos {
             if (tmp.length == 4 && tmp[1].equals("=")) {
 
                 if (tmp[2].equals("rem_doubles")) {
-                    System.out.println(tmp[0] + " " + tmp[3]);
                     if (comm.containsKey(tmp[0]) && comm.containsKey(tmp[3])) {
                         return 1;
                     } else {
@@ -226,7 +226,7 @@ public class Metodos {
                             return -222;
                         }
                     case "create":
-                        System.out.println();
+                    
                         if (tmp[1].startsWith(String.valueOf('"')) && tmp[1].endsWith(String.valueOf('"'))) {
 
                             if (tmp[2].equals("as")) {

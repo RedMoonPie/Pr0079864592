@@ -81,30 +81,30 @@ public class Proyecto {
 //>>     error identificadores
 //-----------------------------------------------------------------//
                 if (a == -1 || a == -4 || a == -5 || a == -6) {
-                    System.out.print("ERROR: Alguno de los identificadores no se ha declarado aún.");
+                    System.out.print("ERROR: Alguno de los identificadores no se ha declarado aún. Error Linea:" + ct+".\n");
                 }
                 
 //-----------------------------------------------------------------//
 //>>     error sintaxis 
 //-----------------------------------------------------------------//               
                 if (a == -11 || a == -2 || a == -3 || a == -66) {
-                    System.out.print("ERROR: Comando escrito incorrectamente, revisar sintaxis. \n");
+                    System.out.print("ERROR: Comando escrito incorrectamente, revisar sintaxis. \n" +"Error Linea:" + ct+".\n");
                 }
 
 //-----------------------------------------------------------------//
 //>>     error existencia archivo
 //-----------------------------------------------------------------//
                 if (a == -22) {
-                    System.out.print("ERROR: El archivo no existe. ");
+                    System.out.print("ERROR: El archivo no existe. "+"Error Linea:" + ct+".\n");
                 }
 //-----------------------------------------------------------------//
 //>>     error " "
 //-----------------------------------------------------------------//
                 if ( a == -222 || a == -33){
-                    System.out.print("ERROR: Comando escrito incorrectamente, revisar \" \" \n");
+                    System.out.print("ERROR: Comando escrito incorrectamente, revisar \" \" \n"+"Error Linea:" + ct+".\n");
                 }
                 if ( a == 0){
-                    System.out.print("ERROR: Comando escrito incorrectamente, revisar = \n");
+                    System.out.print("ERROR: Comando escrito incorrectamente, revisar = \n"+"Error Linea:" + ct+".\n");
                 }
             }
         }
