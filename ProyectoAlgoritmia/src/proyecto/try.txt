@@ -1,0 +1,10 @@
+assign "text1" to var_identifier
+create "RobertCapa" as var_identity
+assign "text2" to var_identifier2
+assign "texto3" to var
+var_identity = rem_doubles var_identifier
+create "RobertCapa" as var_identity
+create "GerdaTaro" as var_identity2
+create "GermanGoering" as var_identity3
+var_identifier = var_identifier2 + var
+var_identity2 = sort var asc
